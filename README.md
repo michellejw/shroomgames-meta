@@ -1,12 +1,25 @@
-# shroomgames-meta
+# Shroom Games
 
-Suite-wide planning, design, and process docs for [Shroom Games](https://shroomgames.app) — the apps live in sibling repos under `shroom-games/`.
+A small suite of calm, offline iOS puzzle games and the shared SwiftUI design system that backs them. Solo project by Michelle Weirathmueller.
 
-## What's here
+This repo holds the suite-wide planning material — the [`ROADMAP`](./ROADMAP.md), implementation plans, design specs. The apps and the design system live in sibling repos.
 
-- [`ROADMAP.md`](./ROADMAP.md) — the standing plan across Rootline, Shroomsweeper, ShroomKit, and the marketing site.
-- [`docs/`](./docs/) — longer-form planning material, implementation plans, design notes.
+## The suite
 
-## What's not here
+| Repo | What it is |
+| --- | --- |
+| [`rootline/`](../rootline/) · [github](https://github.com/michellejw/rootline) | Slitherlink loop puzzle — game 2 |
+| [`shroomsweeper/`](../shroomsweeper/) · [github](https://github.com/michellejw/shroomsweeper) | Cozy Minesweeper — game 1 |
+| [`shroomkit/`](../shroomkit/) · [github](https://github.com/michellejw/shroomkit) | Shared SwiftUI design system (palette, theme, scaffolds). Local Swift Package consumed by both apps. |
+| [`shroomgames-site/`](../shroomgames-site/) | Marketing site at [shroomgames.app](https://shroomgames.app) |
+| [`shroomgames-meta/`](.) | (this repo) Suite-wide ROADMAP, planning docs, design notes |
 
-App code, asset libraries, or build pipelines — those live with their respective repos (`rootline/`, `shroomsweeper/`, `shroomkit/`, `shroomgames-site/`).
+## What's in this repo
+
+- [`ROADMAP.md`](./ROADMAP.md) — the standing plan across the suite
+- [`docs/superpowers/plans/`](./docs/superpowers/plans/) — implementation plans
+- [`docs/superpowers/specs/`](./docs/superpowers/specs/) — design specs
+
+## Package wiring (for reference)
+
+Each app references ShroomKit as a **local-path** Swift Package (`../shroomkit`), not a URL. URL-based was attempted but Xcode's SPM resolver was flaky — punted. Locally this just works.
