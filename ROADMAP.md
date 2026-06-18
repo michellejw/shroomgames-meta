@@ -5,14 +5,20 @@ A standing plan for where Rootline (and the broader Shroom Games suite) is heade
 ## Progress tracker
 
 ### Big Rock #1 — Calm leaderboard rework
-- [ ] Delete `WinEntrySheet.swift`
-- [ ] Rewrite `ScoreStore.swift` (best time + completion count per tier; no ranked top-5)
-- [ ] Rewrite + rename `BestTimesView.swift` → `StatsView.swift`
-- [ ] Update `WinCard.swift` (always show time; add "Your fastest yet" whisper only if beaten)
-- [ ] Update `PlayView.swift` (remove entry-sheet trigger; call new ScoreStore API)
-- [ ] Update `HomeView.swift` (link to StatsView)
-- [ ] Add "X puzzles cleared" total to StatsView
+- [x] Delete `WinEntrySheet.swift`
+- [x] Rewrite `ScoreStore.swift` (best time + completion count per tier; no ranked top-5)
+- [x] Rewrite + rename `BestTimesView.swift` → `StatsView.swift`
+- [x] Update `WinCard.swift` (always show time; add "Your fastest yet" whisper only if beaten)
+- [x] Update `PlayView.swift` (remove entry-sheet trigger; call new ScoreStore API)
+- [x] Update `HomeView.swift` (link to StatsView)
+- [x] Add "X puzzles cleared" total to StatsView
 - [ ] Sit with the pattern — decide if it goes into ShroomKit for Shroomsweeper
+
+**Bonus rework shipped alongside** (not originally on the roadmap, surfaced while playtesting):
+- [x] Hints simplified to one tap = one move (was 3-tap escalation); unlimited with "N hints used" counter
+- [x] "Show solution" reveal button — view-only, doesn't record stats; gated by confirm alert
+- [x] Eye button relocated next to back to prevent accidental taps adjacent to hint
+- [x] Back button now confirms ("Leave puzzle?") when the player has made moves
 
 ### Big Rock #2 — Design system (phased)
 
@@ -138,9 +144,10 @@ Replace the hand-curated puzzle pool with an offline-generated bundle, surfaced 
 
 All three apps build clean, public on GitHub, MIT-licensed.
 
-- **Rootline** ([github.com/michellejw/rootline](https://github.com/michellejw/rootline)) — v1 feature-complete per the original design plan. Plus: app icon, persistence, puzzle editor + add-puzzle script, tutorial overhaul, leaderboard (the soon-to-be-reworked arcade version), theme cycle in-game, full Dynamic Type pass.
-- **Shroomsweeper** ([github.com/michellejw/shroomsweeper](https://github.com/michellejw/shroomsweeper)) — on ShroomKit, persistence, ThemeMode, in-game theme cycle.
-- **ShroomKit** ([github.com/michellejw/shroomkit](https://github.com/michellejw/shroomkit)) — Palette, Appearance, ThemeMode, LoadingView, WelcomeScaffold. Two consumers. Local-path package dependency (URL-based was attempted but Xcode's SPM resolver was flaky — punted).
+- **Rootline** ([github.com/michellejw/rootline](https://github.com/michellejw/rootline)) — v1 feature-complete. Calm per-tier stats + one-tap hint + show-solution reveal shipped on top. Next likely step: TestFlight beta.
+- **Shroomsweeper** ([github.com/michellejw/shroomsweeper](https://github.com/michellejw/shroomsweeper)) — on ShroomKit, persistence, ThemeMode, in-game theme cycle. Still on the arcade leaderboard pattern; will revisit once we've sat with Rootline's calm-stats screen.
+- **ShroomKit** ([github.com/michellejw/shroomkit](https://github.com/michellejw/shroomkit)) — Palette, Appearance, ThemeMode, LoadingView, WelcomeScaffold. Two consumers. Local-path package dependency (URL-based was attempted but Xcode's SPM resolver was flaky — punted). Design-system phase 1 (tokens) in flight.
+- **shroomgames-meta** ([github.com/michellejw/shroomgames-meta](https://github.com/michellejw/shroomgames-meta)) — this repo. Suite-wide ROADMAP + planning docs + design specs, versioned alongside (not inside) the app repos.
 
 ## Repo housekeeping
 
