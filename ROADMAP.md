@@ -25,12 +25,14 @@ A standing plan for where Rootline (and the broader Shroom Games suite) is heade
 Reframed from "design tokens" — the real goal is a Shroom Games design system across iOS + web. Three layers: **values** (tokens), **components** (reusable views; ShroomKit is already half of this), **cross-platform parity** (same values/patterns on web). Tokens come first because every component on both platforms consumes them.
 
 **Phase 1 — Tokens foundation** (the values layer)
-- [ ] Audit current values: colors in `Palette.swift` + scattered radii/spacing in app views + type conventions (font design/weight/tracking layered on Dynamic Type)
-- [ ] Write `tokens/tokens.json` in DTCG format (colors, spacing, radii, typography conventions)
-- [ ] Configure Style Dictionary: Swift extensions (ShroomKit) + CSS custom properties (web)
-- [ ] Wire build step into ShroomKit (tokens regenerate when JSON changes); regenerate `Palette.swift` from tokens
-- [ ] Update `shroomgames-site/` to consume CSS output
-- [ ] Xcode smoke-check: both apps still build against regenerated ShroomKit
+- [x] Audit current values: colors in `Palette.swift` + scattered radii/spacing in app views + type conventions (font design/weight/tracking layered on Dynamic Type)
+- [x] Write `tokens/tokens.json` in DTCG format (colors, spacing, radii, typography conventions)
+- [x] Configure Style Dictionary: Swift extensions (ShroomKit) + CSS custom properties (web)
+- [x] Wire build step into ShroomKit (`npm run build:tokens`); `Palette.swift` regenerated from tokens, `Tokens.generated.swift` for radii/spacing/type
+- [x] Update `shroomgames-site/` to consume CSS output (zero visual change — all 65 color values verified)
+- [x] Xcode smoke-check: rootline (Mycogrid) TestFlight archive built clean against regenerated ShroomKit; shroomsweeper shares the same frozen `Palette` API
+
+*Phase 1 complete (2026-06-19). Merged to `main` in shroomkit + shroomgames-site. Phase-2 follow-ups (in shroomkit `.git/sdd` ledger): adopt radii/spacing tokens in app views; derive `PALETTE_ORDER` from token metadata.*
 
 **Phase 2 — iOS component consolidation** (later)
 - [ ] Audit patterns duplicated across rootline/shroomsweeper (button styles, stat pill, result bar, eyebrow label, etc.)
