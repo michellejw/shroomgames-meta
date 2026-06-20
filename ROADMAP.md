@@ -38,9 +38,11 @@ Reframed from "design tokens" — the real goal is a Shroom Games design system 
 - [ ] Audit patterns duplicated across rootline/shroomsweeper (button styles, stat pill, result bar, eyebrow label, etc.)
 - [ ] Pull shared ones into ShroomKit; make all components consume tokens
 
-**Phase 3 — Web foundation** (later; web components gated on the web game existing)
-- [ ] Marketing site fully on CSS tokens
-- [ ] Web components when the web game repo exists
+**Phase 3 — Web foundation** (kicked off 2026-06-19 — triggered by the first web game)
+- [x] `@shroomgames/tokens` consumable npm package at `shroomkit/tokens/dist/` — typed JS export (both themes), `tokens.css`, Tailwind v4 `theme.css` (`@theme inline`); consumed via local `file:` dep. Spec/plan in `docs/superpowers/`.
+- [x] Marketing site consumes the generated CSS tokens (vendored copy, re-pointed to `dist/`)
+- [ ] Scaffold the web game and wire it to `@shroomgames/tokens` (import `tokens.css` + `theme.css`, theme via `data-theme`)
+- [ ] Web components (shared React patterns) once the game reveals what's reusable
 
 **Cross-cutting patterns** (woven in as needed)
 - [ ] Tutorial scaffold parity
