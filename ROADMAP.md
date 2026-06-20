@@ -37,9 +37,11 @@ Reframed from "design tokens" — the real goal is a Shroom Games design system 
 **Phase 2 — iOS component consolidation** (in progress — done in waves; audit + extraction inventory in `docs/superpowers/`)
 - [x] Audit patterns duplicated across rootline/shroomsweeper (~13 shared patterns found; 3 waves planned)
 - [x] **Wave 1 — primitives** (2026-06-20): `EyebrowLabel`, `PillIconButton` (+ `ThemeMode.iconName`), `StatPill`, `ShroomButtonStyle` (primary/secondary/outline). Both apps swapped; a11y fixed on extraction (required icon labels, .caption eyebrow, 44pt floor); CTA radius unified + pressed-state. Net −400 lines of duplicated inline styling. Merged to main in all 3 repos.
-- [ ] **Wave 2 — composites**: ScreenHeader, SegmentedToggle, SelectionCard, ResultCard, settings chrome
+- [x] **Wave 2 — composites** (2026-06-20): `ScreenHeader`, `SelectionCard`, `SegmentedToggle`, `ResultCard`, settings chrome (`SettingsSection`/`SelectionChip`/`SettingsRow`). Both apps swapped where applicable; `.isSelected` traits added (last a11y gap from the audit); the 4-file-duplicated mode toggle + three end-of-game cards collapsed. Net −370 lines. Merged to main in all 3 repos.
 - [ ] **Wave 3 — tutorial flow**: TutorialBannerCard + NudgeToast (most app-coupled)
 - [ ] Decide if the calm-stats pattern (Big Rock #1) gets a shared component too
+- [ ] **Deferred from Wave 2** — game-screen headers (rootline PlayView, shroomsweeper GameView) left bespoke; `ScreenHeader` is slot-based so they can adopt later. Decide whether they should structurally match or look identical.
+- [ ] **Cross-app theme control consistency.** Quick toggle is now a 2-state light/dark flip (3-state cycle had a dead click). rootline keeps "System" in its Settings picker; shroomsweeper is light/dark-only (no settings picker). Unify: give shroomsweeper a settings theme control too (a shared `ThemePicker`?), and make the 2-state flip read live appearance so there's no first-tap no-op from System.
 
 **Phase 3 — Web foundation** (kicked off 2026-06-19 — triggered by the first web game)
 - [x] `@shroomgames/tokens` consumable npm package at `shroomkit/tokens/dist/` — typed JS export (both themes), `tokens.css`, Tailwind v4 `theme.css` (`@theme inline`); consumed via local `file:` dep. Spec/plan in `docs/superpowers/`.
