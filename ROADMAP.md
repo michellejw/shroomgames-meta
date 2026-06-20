@@ -34,15 +34,22 @@ Reframed from "design tokens" — the real goal is a Shroom Games design system 
 
 *Phase 1 complete (2026-06-19). Merged to `main` in shroomkit + shroomgames-site. Phase-2 follow-ups (in shroomkit `.git/sdd` ledger): adopt radii/spacing tokens in app views; derive `PALETTE_ORDER` from token metadata.*
 
-**Phase 2 — iOS component consolidation** (later)
-- [ ] Audit patterns duplicated across rootline/shroomsweeper (button styles, stat pill, result bar, eyebrow label, etc.)
-- [ ] Pull shared ones into ShroomKit; make all components consume tokens
+**Phase 2 — iOS component consolidation** (in progress — done in waves; audit + extraction inventory in `docs/superpowers/`)
+- [x] Audit patterns duplicated across rootline/shroomsweeper (~13 shared patterns found; 3 waves planned)
+- [x] **Wave 1 — primitives** (2026-06-20): `EyebrowLabel`, `PillIconButton` (+ `ThemeMode.iconName`), `StatPill`, `ShroomButtonStyle` (primary/secondary/outline). Both apps swapped; a11y fixed on extraction (required icon labels, .caption eyebrow, 44pt floor); CTA radius unified + pressed-state. Net −400 lines of duplicated inline styling. Merged to main in all 3 repos.
+- [ ] **Wave 2 — composites**: ScreenHeader, SegmentedToggle, SelectionCard, ResultCard, settings chrome
+- [ ] **Wave 3 — tutorial flow**: TutorialBannerCard + NudgeToast (most app-coupled)
+- [ ] Decide if the calm-stats pattern (Big Rock #1) gets a shared component too
 
 **Phase 3 — Web foundation** (kicked off 2026-06-19 — triggered by the first web game)
 - [x] `@shroomgames/tokens` consumable npm package at `shroomkit/tokens/dist/` — typed JS export (both themes), `tokens.css`, Tailwind v4 `theme.css` (`@theme inline`); consumed via local `file:` dep. Spec/plan in `docs/superpowers/`.
 - [x] Marketing site consumes the generated CSS tokens (vendored copy, re-pointed to `dist/`)
 - [ ] Scaffold the web game and wire it to `@shroomgames/tokens` (import `tokens.css` + `theme.css`, theme via `data-theme`)
+- [ ] **Add web typography to the token package.** `@shroomgames/tokens` ships weights + tracking but no web *font family* or *type scale*; its `font.design` values (`rounded`/`monospaced`) are SwiftUI `Font.Design`, not valid CSS. Each web game currently re-invents this locally (Nonagarden supplies Fredoka via `next/font` + a small local type scale in `globals.css`). Decide on a web font + scale and emit them from the token source so games don't each duplicate it.
+- [ ] **Resolve radius scale drift for game surfaces.** The nonogram design wants tile `9` / board `20` / sheet `28`px, none of which exist in the token scale (`10/12/14/16/18/22`). Nonagarden uses local px literals for tiles for now. Decide: add game/grid radii to `tokens.json`, or accept per-game local literals for board-specific shapes.
 - [ ] Web components (shared React patterns) once the game reveals what's reusable
+
+*Web follow-ups surfaced 2026-06-19 while scaffolding Nonagarden (the first web game) + wiring the token package — see the two checked items above.*
 
 **Cross-cutting patterns** (woven in as needed)
 - [ ] Tutorial scaffold parity
