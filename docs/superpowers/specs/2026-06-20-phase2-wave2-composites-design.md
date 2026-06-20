@@ -17,14 +17,16 @@ Extract the five composite UI patterns shared across rootline + shroomsweeper in
 ## Components
 
 ### 1. `ScreenHeader` — `Components/ScreenHeader.swift`
+**Slot-based and deliberately flexible** — the component owns the skeleton (back + title + trailing area); each screen supplies its own trailing buttons. Built this way so a *game* header (centered two-line title + multiple action buttons) could adopt it later via a small swap, not a rewrite — but game headers are NOT adopted this wave (see below).
 ```swift
 public struct ScreenHeader<Trailing: View>: View {
-    public init(_ title: String, onBack: (() -> Void)?,
+    public init(_ title: String, subtitle: String? = nil, onBack: (() -> Void)?,
                 @ViewBuilder trailing: () -> Trailing = { EmptyView() })
 }
 ```
-- HStack: a back `PillIconButton(systemName: "chevron.left", accessibilityLabel: "Back")` when `onBack != nil`; the title in `.title2` rounded semibold (`palette.text`); `Spacer`; the `trailing` slot.
-- **Replaces:** rootline `DifficultyView.header`, `StatsView.header` (trailing = the "Clear" ghost button); shroomsweeper's simple screen headers. **Not** rootline `PlayView.header` (bespoke — centered two-line title + three action buttons; leave as-is).
+- HStack: a back `PillIconButton(systemName: "chevron.left", accessibilityLabel: "Back")` when `onBack != nil`; the title in `.title2` rounded semibold (`palette.text`) with an optional `subtitle` as an `EyebrowLabel` above it (the future game-header two-line shape); `Spacer`; the `trailing` slot.
+- **Adopt this wave:** rootline `DifficultyView.header`, `StatsView.header` (trailing = the "Clear" ghost button); shroomsweeper's simple screen headers.
+- **Deferred (not this wave):** rootline `PlayView.header` and shroomsweeper `GameView.header` stay bespoke. Their *actions* differ because the games differ (slitherlink hints/reveal vs minesweeper), so whether the game headers should structurally match or look identical is a product call to make later. The slot-based API means adopting them later is a swap, not a rewrite. (Their buttons already use the shared `PillIconButton`, so they aren't un-consolidated.)
 
 ### 2. `SegmentedToggle` — `Components/SegmentedToggle.swift`
 Generic 2-segment (or N) pill toggle bound to a value. Per-segment glyph is an arbitrary view (rootline's are custom shapes, not SF Symbols).
