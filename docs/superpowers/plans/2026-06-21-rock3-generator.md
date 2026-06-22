@@ -270,7 +270,6 @@ extension RegionTests {
     }
 
     func test_generate_isNonTrivialAndConnected() {
-        var rng = SplitMix64(seed: 3)
         let gen = RegionGenerator(cols: 5, rows: 7)
         // Run a handful of seeds; every region is connected and within the fill band.
         for s in 0..<20 {
@@ -281,7 +280,6 @@ extension RegionTests {
             // Connectivity holds even though holes may exist.
             XCTAssertTrue(regionIsConnected(region))
         }
-        _ = rng
     }
 
     // Local connectivity helper (does not check holes).

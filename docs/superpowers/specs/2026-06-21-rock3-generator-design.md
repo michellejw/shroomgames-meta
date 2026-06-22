@@ -161,9 +161,13 @@ One JSON file, grouped by tier. Each puzzle entry:
   is the contract Phase 3 relies on: date → puzzle mapping and the archive's
   per-puzzle cleared-status persistence key off `id`, so the pool can grow
   without scrambling players' history.
-- **`cols`, `rows`, `inside`, `hideClues`** — the existing `Puzzle` fields, so
-  the app's existing `Codable` decoding works essentially as-is.
+- **`cols`, `rows`, `inside`, `hideClues`** — the existing `Puzzle` fields.
   `presetActive` is tutorial-only and is omitted/empty for generated puzzles.
+  **Phase 3 decode note:** the bundle emits `inside`/`hideClues` as `[[Int]]`
+  (`[[c, r], …]`), whereas the app's `Puzzle` is `Codable`-synthesized over
+  `Set<Cell>` and would expect `[{"c":…,"r":…}]`. So Phase 3 will need a small
+  custom decoder (or an init from `[[Int]]`) — the formats are intentionally
+  close but not byte-for-byte `Decodable`-compatible.
 - **`meta`** — generation provenance, not used at runtime: `shownClueCount`,
   `rulesFired` (clue/dot tallies), and the `seed` that produced the puzzle.
 
