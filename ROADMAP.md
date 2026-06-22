@@ -1,6 +1,8 @@
-# Rootline + Shroom Games roadmap
+# Mycogrid + Shroom Games roadmap
 
-A standing plan for where Rootline (and the broader Shroom Games suite) is headed. Things settled here have been agreed already; revisit only when something genuinely changes.
+A standing plan for where Mycogrid (and the broader Shroom Games suite) is headed. Things settled here have been agreed already; revisit only when something genuinely changes.
+
+> **Naming (settled 2026-06-22):** the loop-puzzle game is **Mycogrid** — repo `mycogrid` (`github.com/michellejw/mycogrid`), local `~/dev/games/shroom-games/mycogrid`. It was formerly called "rootline" (and never "Slitherlink"). The Xcode project/target and its source folder are *still named `rootline` internally* — a deliberate residual, not yet renamed. Dated specs/plans and session logs predating this note say "rootline"; read those as Mycogrid.
 
 ## Progress tracker
 
@@ -130,7 +132,7 @@ A Shroom Games design system, not just tokens. Three layers — **values** (toke
 
 **Later phases**: iOS component consolidation (pull patterns duplicated across rootline/shroomsweeper into ShroomKit, consuming tokens), then web foundation (site on CSS tokens; web components once the web-game repo exists). The reusable **calendar** is co-designed with #3's archive view, not built speculatively.
 
-### 3. Slitherlink solver + generator + daily/archive UI
+### 3. Mycogrid solver + generator + daily/archive UI
 
 Replace the hand-curated puzzle pool with an offline-generated bundle, surfaced as NYT-style daily puzzles plus a browseable archive.
 
@@ -139,7 +141,7 @@ Replace the hand-curated puzzle pool with an offline-generated bundle, surfaced 
   - Random region generation
   - Solution derivation (already in `Engine.swift`)
   - Clue-hiding strategy
-  - **Slitherlink solver** (constraint propagation + uniqueness check) — the hardest piece
+  - **Mycogrid solver** (constraint propagation + uniqueness check) — the hardest piece
   - Difficulty grading (count of techniques the solver needs)
 - The output JSON ships as an app **bundled resource**
 - App loads the bundle, maps date → puzzle deterministically (e.g., date hash mod count)
@@ -160,8 +162,8 @@ Replace the hand-curated puzzle pool with an offline-generated bundle, surfaced 
 
 All three apps build clean, public on GitHub, MIT-licensed.
 
-- **Rootline** ([github.com/michellejw/rootline](https://github.com/michellejw/rootline)) — v1 feature-complete. Calm per-tier stats + one-tap hint + show-solution reveal shipped on top. Next likely step: TestFlight beta.
-- **Shroomsweeper** ([github.com/michellejw/shroomsweeper](https://github.com/michellejw/shroomsweeper)) — on ShroomKit, persistence, ThemeMode, in-game theme cycle. Still on the arcade leaderboard pattern; will revisit once we've sat with Rootline's calm-stats screen.
+- **Mycogrid** ([github.com/michellejw/mycogrid](https://github.com/michellejw/mycogrid)) — v1 feature-complete. Calm per-tier stats + one-tap hint + show-solution reveal shipped on top. Big Rock #3 solver + generator (Phases 1–2) merged. Next likely step: TestFlight beta. (Xcode project still named `rootline` internally.)
+- **Shroomsweeper** ([github.com/michellejw/shroomsweeper](https://github.com/michellejw/shroomsweeper)) — on ShroomKit, persistence, ThemeMode, in-game theme cycle. Still on the arcade leaderboard pattern; will revisit once we've sat with Mycogrid's calm-stats screen.
 - **ShroomKit** ([github.com/michellejw/shroomkit](https://github.com/michellejw/shroomkit)) — Palette, Appearance, ThemeMode, LoadingView, WelcomeScaffold. Two consumers. Local-path package dependency (URL-based was attempted but Xcode's SPM resolver was flaky — punted). Design-system phase 1 (tokens) in flight.
 - **shroomgames-meta** ([github.com/michellejw/shroomgames-meta](https://github.com/michellejw/shroomgames-meta)) — this repo. Suite-wide ROADMAP + planning docs + design specs, versioned alongside (not inside) the app repos.
 

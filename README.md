@@ -8,7 +8,7 @@ This repo holds the suite-wide planning material — the [`ROADMAP`](./ROADMAP.m
 
 | Repo | What it is |
 | --- | --- |
-| [`rootline/`](../rootline/) · [github](https://github.com/michellejw/rootline) | Slitherlink loop puzzle — game 2 |
+| [`mycogrid/`](../mycogrid/) · [github](https://github.com/michellejw/mycogrid) | Mycogrid loop puzzle — game 2 (Xcode project/target still named `rootline` internally) |
 | [`shroomsweeper/`](../shroomsweeper/) · [github](https://github.com/michellejw/shroomsweeper) | Cozy Minesweeper — game 1 |
 | [`shroomkit/`](../shroomkit/) · [github](https://github.com/michellejw/shroomkit) | Shared SwiftUI design system (palette, theme, scaffolds). Local Swift Package consumed by both apps. |
 | [`shroomgames-site/`](../shroomgames-site/) | Marketing site at [shroomgames.app](https://shroomgames.app) |
