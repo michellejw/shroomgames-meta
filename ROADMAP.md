@@ -65,11 +65,13 @@ Reframed from "design tokens" — the real goal is a Shroom Games design system 
 - [ ] Implement uniqueness check
 - [ ] CLI runnable and tested in isolation
 
-**Phase 2 — Generator**
-- [ ] Random grid generation
-- [ ] Clue-hiding strategy
-- [ ] Difficulty grading (technique count)
-- [ ] Emits validated JSON bundle per tier
+**Phase 2 — Generator** *(complete 2026-06-22 — merged to rootline main `b95c357`; spec+plan in `docs/superpowers/{specs,plans}/2026-06-21-rock3-generator*`)*
+- [x] Random grid generation — cell accretion + no-hole flood-fill guard (`RegionGenerator`)
+- [x] Clue-hiding strategy — greedy hide to the pure-logic cap (`ClueHider`); density emerges
+- [~] Difficulty grading (technique count) — `meta.rulesFired` (clue/dot tallies) emitted per puzzle as a signal, but tier stays = grid size (not solver-graded). Full grading deferred; revisit only if real boards feel mis-tiered.
+- [x] Emits validated JSON bundle per tier — `mycogrid-generate` CLI; pure-logic gate (`unique && guesses==0`); byte-reproducible (seeded SplitMix64 + deterministic solver); content-derived stable ids; self-audited via `mycogrid-validate`
+
+Fast-follow (non-blocking, from final review): `generateOne` does a redundant final `solve` purely to capture `rulesFired` for meta — `ClueHider` could return its final trace instead (perf on big sparse tiers).
 
 **Phase 3 — App-side**
 - [ ] Load JSON bundle as bundled resource
