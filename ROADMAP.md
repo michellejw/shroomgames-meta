@@ -75,16 +75,16 @@ Reframed from "design tokens" — the real goal is a Shroom Games design system 
 
 Fast-follow (non-blocking, from final review): `generateOne` does a redundant final `solve` purely to capture `rulesFired` for meta — `ClueHider` could return its final trace instead (perf on big sparse tiers).
 
-**Phase 3 — App-side**
-- [ ] Load JSON bundle as bundled resource
-- [ ] Date → puzzle mapping (deterministic hash)
-- [ ] "Today's grove" entry point on Home
-- [ ] Archive view (scrollable grid, cleared/not/streak status)
-- [ ] Remove Sprout #1/#2/#3 cycling
+**Phase 3 — App-side** *(complete 2026-06-24 — merged to mycogrid main; spec+plan in `docs/superpowers/{specs,plans}/2026-06-22-rock3-phase3-app*`; handoff in `docs/superpowers/handoffs/2026-06-23-rock3-phase3-part2-handoff.md`)*
+- [x] Load JSON bundle as bundled resource — `PuzzleBundle` decode bridge + `puzzles.json` (700 entries, integrity audited via `mycogrid-validate bundle`)
+- [x] Date → puzzle mapping (deterministic, append-only occurrence-index — NOT hash mod) — `DailyService`
+- [x] "Today's grove" entry point on Home
+- [x] Archive view (calendar layout, weekday columns, cleared/streak status)
+- [x] Remove Sprout #1/#2/#3 cycling — Difficulty picker retired, "Next puzzle" treadmill removed
 
-**Phase 4 — Migrate persistence**
-- [ ] Decide: migrate existing progress best-effort or start fresh
-- [ ] Implement date-keyed puzzle ID storage
+**Phase 4 — Migrate persistence** *(complete 2026-06-24 — folded into Phase 3 merge; pre-TestFlight so no install base to migrate)*
+- [x] Decide: migrate existing progress best-effort or start fresh — fresh start, no migration code (no install base)
+- [x] Implement date-keyed puzzle ID storage — id-keyed `CompletionStore` is the single source of truth; `ProgressStore` re-keyed to `{puzzleID, playedDate}` (`_v2`); `ScoreStore` retired
 
 ## Guiding principles
 
